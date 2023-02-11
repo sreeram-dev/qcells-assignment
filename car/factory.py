@@ -1,13 +1,21 @@
 # -*- coding:utf-8 -*-
 
+from abc import ABC, abstractmethod
 from car.models import Car, ConvertibleCar, CarEngine
 from car.utils import generate_random_string
 
 
-class CarBuilder:
+class CarFactory(ABC):
+
+    @abstractmethod
+    def build_car(self):
+        pass
+
+
+class PriusFactory(CarFactory):
 
     @staticmethod
-    def build_prius() -> Car:
+    def build_car() -> Car:
         engine = CarEngine(121, 53)
 
         car = Car()
@@ -19,8 +27,11 @@ class CarBuilder:
 
         return car
 
+
+class PorscheFactory(CarFactory):
+
     @staticmethod
-    def build_porsche_boxster() -> ConvertibleCar:
+    def build_car() -> ConvertibleCar:
         engine = CarEngine(265, 32)
 
         car = ConvertibleCar()

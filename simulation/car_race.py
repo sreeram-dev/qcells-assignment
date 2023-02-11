@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 
 from simulation.simulation import ISimulationInterface
-from car.builder import CarBuilder
+from car.factory import PriusFactory, PorscheFactory
 
 
 class CarRaceSimulation(ISimulationInterface):
@@ -17,8 +17,8 @@ class CarRaceSimulation(ISimulationInterface):
         """Initialise the cars - porsche boxster and prius
         :return:
         """
-        self.prius = CarBuilder.build_prius()
-        self.porsche = CarBuilder.build_porsche_boxster()
+        self.prius = PriusFactory.build_car()
+        self.porsche = PorscheFactory.build_car()
 
     def run_simulation(self):
         """Run the simulation as given in the document

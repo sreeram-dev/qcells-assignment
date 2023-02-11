@@ -1,8 +1,7 @@
 # -*- coding:utf-8 -*-
 import pytest
 
-from car.builder import CarBuilder
-from car.models import Car
+from car.factory import PriusFactory, PorscheFactory
 from parking.parking_lot import OrderedParkingLot
 
 
@@ -13,9 +12,9 @@ class TestParkingLot:
         :return:
         """
         parking_lot = OrderedParkingLot(2)
-        prius_1 = CarBuilder.build_prius()
-        prius_2 = CarBuilder.build_prius()
-        porsche_1 = CarBuilder.build_porsche_boxster()
+        prius_1 = PriusFactory.build_car()
+        prius_2 = PriusFactory.build_car()
+        porsche_1 = PorscheFactory.build_car()
 
         parking_lot.park(prius_1)
         parking_lot.park(prius_2)
@@ -31,22 +30,22 @@ class TestParkingLot:
         """
         # test setup
         parking_lot = OrderedParkingLot(3)
-        prius_1 = CarBuilder.build_prius()
-        prius_2 = CarBuilder.build_prius()
+        prius_1 = PriusFactory.build_car()
+        prius_2 = PriusFactory.build_car()
         parking_lot.park(prius_1)
         parking_lot.park(prius_2)
 
-        porsche_1 = CarBuilder.build_porsche_boxster()
+        porsche_1 = PorscheFactory.build_car()
         parking_lot.park(porsche_1)
         assert parking_lot.search(porsche_1) != -1
 
-        prius_3 = CarBuilder.build_prius()
+        prius_3 = PriusFactory.build_car()
         parking_lot.park(prius_3, replace=True)
         # prius_3 has been parked in the place of prius_1
         assert parking_lot.search(prius_1) == -1
         assert parking_lot.search(prius_3) != -1
 
-        porsche_2 = CarBuilder.build_porsche_boxster()
+        porsche_2 = PorscheFactory.build_car()
         parking_lot.park(porsche_2, replace=True)
         # porsche_2 has been parked in place of prius_2
         assert parking_lot.search(prius_2) == -1
