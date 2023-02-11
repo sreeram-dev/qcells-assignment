@@ -71,8 +71,20 @@ class Car:
     def set_engine(self, engine: CarEngine):
         self.engine = engine
 
-    def get_name(self):
+    def get_name(self) -> str:
         return self.name
+
+    def get_production_number(self) -> str:
+        return self.production_number
+
+    def get_car_type(self) -> str:
+        return "Non-Convertible Car"
+
+    def get_description(self) -> str:
+        return f" Name: {self.get_name()} \n" \
+               f" Car Type: {self.get_car_type()} \n" \
+               f" Production Number: {self.get_production_number()} \n" \
+               f" Horse Power: {self.engine.get_hp()}hp"
 
     def accelerate(self, accelerate: float):
         """
@@ -112,3 +124,6 @@ class ConvertibleCar(Car, IConvertibleSpecialization):
 
     def is_roof_closed(self) -> bool:
         return self.roof == CarRoof.CLOSED
+
+    def get_car_type(self) -> str:
+        return "Convertible Car"

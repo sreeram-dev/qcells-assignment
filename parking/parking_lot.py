@@ -1,7 +1,5 @@
 # -*- coding:utf-8 -*-
 
-import random
-
 from abc import ABC
 
 from car.models import Car
@@ -9,6 +7,14 @@ from collections import OrderedDict
 
 
 class IParkingLotInterface:
+
+    def search(self, car: Car) -> int:
+        """
+        Checks whether the car is present in parking lot or otherwise
+        :param car: car to be searched
+        :return: -1 if car is not present, else, return parking slot
+        """
+        raise NotImplementedError
 
     def park(self, car: Car) -> bool:
         """
@@ -26,30 +32,12 @@ class IParkingLotInterface:
         """
         raise NotImplementedError
 
-
-class ParkingSlot:
-
-    def __init__(self, slot: int):
-        self.slot = slot
-        self.car = None
-
-    def is_empty(self) -> bool:
-        return self.car is None
-
-    def park(self, car: Car):
+    def print_directory(self):
         """
-        Park i.e. store a car in the parking slot
-        :param car:
+        Prints the parking lot directory
         :return:
         """
-        self.car = car
-
-    def remove(self):
-        """
-        Remove the car if parked, from the parking slot
-        :return:
-        """
-        self.car = None
+        raise NotImplementedError
 
 
 class OrderedParkingLot(IParkingLotInterface, ABC):
@@ -87,15 +75,16 @@ class OrderedParkingLot(IParkingLotInterface, ABC):
             if not replace:
                 raise KeyError("The parking lot is at full capacity")
             # remove the oldest car parked in the parking lot
-            removed_car, parked_slot = self.directory.popitem()
-            print(f"Removed car: {removed_car.get_name()} parked_slot: {parked_slot}")
+            removed_car, parked_slot = self.directory.popitem(last=False)
+            print(f"{removed_car.get_name()} has been removed from slot: {parked_slot}")
             self.dq[parked_slot] = None
 
         # insert the car in an empty parking slot
-        empty_slot = min(list(set(range(self.capacity)) - set(self.directory.values())))
+        empty_slot = int(min(list(set(range(self.capacity)) - set(self.directory.values()))))
         assert(self.dq[empty_slot] is None)
         self.dq[empty_slot] = car
         self.directory[car] = empty_slot
+        print(f"{car.get_name()} has been parked in slot: {empty_slot}")
 
         return True
 
@@ -112,5 +101,6 @@ class OrderedParkingLot(IParkingLotInterface, ABC):
         self.dq[parked_slot] = None
         return True
 
-
-
+    def print_directory(self):
+        for car, slot in self.directory.items():
+            print(f"Parking slot: {slot}, Car: {car.get_name()}")
