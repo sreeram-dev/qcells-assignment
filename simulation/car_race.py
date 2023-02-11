@@ -27,7 +27,7 @@ class CarRaceSimulation(ISimulationInterface):
 
         # open the roof of the porsche boxster
         self.porsche.open_roof()
-        assert(self.porsche.is_roof_open() is True)
+        assert self.porsche.is_roof_open() is True
 
         epoch = 0
         while self.porsche.get_current_speed() <= 200 and self.prius.get_current_speed() <= 200:
