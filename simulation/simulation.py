@@ -13,9 +13,9 @@ class ISimulationInterface:
         """
         raise NotImplementedError("define the simulation")
 
-    def print_summary_report(self):
+    def print_epoch_result(self, epoch: int):
         """Print the results from the simulation
         """
-        raise NotImplementedError("print the summary report")
+        raise NotImplementedError("print the epoch result")
 
 

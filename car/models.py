@@ -5,7 +5,8 @@ from enum import Enum
 
 class CarEngine:
     def __init__(self, hp: float, mpg: float):
-        """Car engine has two parameters - horse power and miles per gallon
+        """
+        Car engine has two parameters - horsepower and miles per gallon
         """
         self.hp = hp
         self.mpg = mpg
@@ -20,12 +21,14 @@ class CarEngine:
 class IConvertibleSpecialization:
 
     def open_roof(self):
-        """Open the roof of the car
+        """
+        Open the roof of the car
         """
         raise NotImplementedError("open roof method is not defined")
 
     def close_roof(self):
-        """Close the roof of the car
+        """
+        Close the roof of the car
         """
         raise NotImplementedError("close roof method is not defined")
 
@@ -68,8 +71,12 @@ class Car:
     def set_engine(self, engine: CarEngine):
         self.engine = engine
 
+    def get_name(self):
+        return self.name
+
     def accelerate(self, accelerate: float):
-        """Accelerates / Decelerates the car
+        """
+        Accelerates / Decelerates the car
 
         :param accelerate:
         :return:

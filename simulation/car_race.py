@@ -34,17 +34,19 @@ class CarRaceSimulation(ISimulationInterface):
             self.porsche.accelerate(0.2)
             self.prius.accelerate(0.2)
             epoch += 1
-            print("epoch: ", epoch, " Prius speed: ", self.prius.get_current_speed(), " Porsche Boxster Speed: ",
-                  self.porsche.get_current_speed())
+            self.print_epoch_result(epoch)
             self.results.append((epoch, self.prius.get_current_speed(), self.porsche.get_current_speed()))
 
         if self.porsche.get_current_speed() >= 200 > self.prius.get_current_speed():
-            print("Porsche Boxster has attained the speed of 200 mph first")
+            print(f"{self.porsche.get_name()} has attained the speed of 200 mph first")
         elif self.prius.get_current_speed() >= 200 > self.porsche.get_current_speed():
-            print("Prius has attained the speed of 200 mph first")
+            print(f"{self.prius.get_name()} has attained the speed of 200 mph first")
+        else:
+            print(f"Both {self.porsche.get_name()} and {self.prius.get_name()} have attained the speed of 200 mph")
 
-    def print_summary_report(self):
-        pass
+    def print_epoch_result(self, epoch: int):
+        print(f"Epoch: {epoch}, {self.porsche.get_name()} Speed: {self.porsche.get_current_speed()},\
+                {self.prius.get_name()} Speed: ", self.prius.get_current_speed())
 
 
 
