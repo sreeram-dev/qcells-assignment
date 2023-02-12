@@ -133,14 +133,14 @@ class PorscheBoxster(Car, IConvertibleSpecialization):
         if self._roof == CarRoof.OPEN:
             print("The car roof is currently open")
         else:
-            print("Opening the roof of the ", self.get_name())
+            print(f"Opening the roof of the {self.get_name()}.")
             self._roof = CarRoof.OPEN
 
     def close_roof(self):
         if self._roof == CarRoof.CLOSED:
             print("The car roof is currently closed")
         else:
-            print("Closing the roof of the ", self.get_name())
+            print(f"Closing the roof of the {self.get_name()}.")
             self._roof = CarRoof.CLOSED
 
     def is_roof_open(self) -> bool:

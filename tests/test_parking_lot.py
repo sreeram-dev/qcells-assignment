@@ -11,6 +11,7 @@ class TestParkingLot:
         Assignment #4
         :return:
         """
+        print("\n ### PARKING LOT SIMULATION RAISES ERROR ")
         parking_lot = OrderedParkingLot(2)
         prius_1 = PriusFactory.build_default_model()
         prius_2 = PriusFactory.build_default_model()
@@ -28,6 +29,7 @@ class TestParkingLot:
         Assignment #5
         :return:
         """
+        print("\n### PARKING LOT SIMULATION WITH REPLACE ###")
         # test setup
         parking_lot = OrderedParkingLot(3)
         prius_1 = PriusFactory.build_default_model()

@@ -33,5 +33,5 @@ Instructions for the assignment have been implemented as testcases in ``tests/``
 
 Run the following commands to execute all tests or individual tests - 
 
-* `pytest tests/` to execute all tests.
-* `pytest tests/{file}` to execute individual test suites. For example, `pytest tests/test_car_factory.py` to execute car builds.
+* `pytest tests/ -s` to execute all tests and print the `stdout`.
+* `pytest tests/{file} -s` to execute individual test suites. For example, `pytest tests/test_car_factory.py` to execute car builds.

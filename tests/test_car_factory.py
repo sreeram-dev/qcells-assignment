@@ -31,6 +31,8 @@ class TestCarFactory:
         assert porsche.get_hp() == 265
         assert porsche.get_mpg() == 32
 
+        # should print roof statements
+        print("\n ### TESTING CAR ROOF FUNCTIONALITY ###")
         assert porsche.is_roof_open() is False
         porsche.open_roof()
         assert porsche.is_roof_open() is True
@@ -44,10 +46,11 @@ class TestCarFactory:
         """
         prius = PriusFactory.build_default_model()
         description = prius.get_description()
-
+        print("\n ### TESTING CAR FORMATTED DESCRIPTION ###")
         # assert description has the following details
         assert prius.get_production_number() in description
         assert str(prius.get_hp()) in description
         assert prius.get_car_type().name in description
         assert prius.get_name() in description
+        print(prius.get_description())
 
