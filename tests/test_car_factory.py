@@ -2,7 +2,7 @@
 import pytest
 
 from car.factory import PriusFactory, PorscheFactory
-from car.models import Car, CarType, CarRoof, ConvertibleCar
+from car.models import CarType
 
 
 class TestCarFactory:
@@ -34,3 +34,5 @@ class TestCarFactory:
         assert porsche.is_roof_open() is False
         porsche.open_roof()
         assert porsche.is_roof_open() is True
+        porsche.close_roof()
+        assert porsche.is_roof_open() is False

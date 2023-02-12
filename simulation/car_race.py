@@ -1,5 +1,7 @@
 # -*- coding:utf-8 -*-
+from typing import Tuple
 
+from car.models import Car
 from simulation.simulation import ISimulationInterface
 from car.factory import PriusFactory, PorscheFactory
 
@@ -20,7 +22,7 @@ class CarRaceSimulation(ISimulationInterface):
         self.prius = PriusFactory.build_car()
         self.porsche = PorscheFactory.build_car()
 
-    def run_simulation(self):
+    def run_simulation(self) -> Car | Tuple[Car, Car]:
         """Run the simulation as given in the document
         :return:
         """
@@ -39,10 +41,13 @@ class CarRaceSimulation(ISimulationInterface):
 
         if self.porsche.get_current_speed() >= 200 > self.prius.get_current_speed():
             print(f"{self.porsche.get_name()} has attained the speed of 200 mph first")
+            return self.porsche
         elif self.prius.get_current_speed() >= 200 > self.porsche.get_current_speed():
             print(f"{self.prius.get_name()} has attained the speed of 200 mph first")
+            return self.prius
         else:
             print(f"Both {self.porsche.get_name()} and {self.prius.get_name()} have attained the speed of 200 mph")
+            return self.prius, self.porsche
 
     def print_epoch_result(self, epoch: int):
         print(f"Epoch: {epoch}, {self.porsche.get_name()} Speed: {self.porsche.get_current_speed()},\
