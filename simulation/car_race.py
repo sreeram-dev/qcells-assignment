@@ -19,8 +19,8 @@ class CarRaceSimulation(ISimulationInterface):
         """Initialise the cars - porsche boxster and prius
         :return:
         """
-        self.prius = PriusFactory.build_car()
-        self.porsche = PorscheFactory.build_car()
+        self.prius = PriusFactory.build_default_model()
+        self.porsche = PorscheFactory.build_default_model()
 
     def run_simulation(self) -> Car | Tuple[Car, Car]:
         """Run the simulation as given in the document

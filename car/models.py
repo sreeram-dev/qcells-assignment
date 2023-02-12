@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
 
 from enum import Enum
+from abc import ABC, abstractmethod
 
 
 class CarRoof(Enum):
@@ -37,19 +38,19 @@ class IConvertibleSpecialization:
         """
         Open the roof of the car
         """
-        raise NotImplementedError("open roof method is not defined")
+        raise NotImplementedError("Open roof method should be implemented.")
 
     def close_roof(self):
         """
         Close the roof of the car
         """
-        raise NotImplementedError("close roof method is not defined")
+        raise NotImplementedError("Close roof method should be implemented.")
 
     def is_roof_open(self) -> bool:
-        raise NotImplementedError
+        raise NotImplementedError("Check whether the roof is open.")
 
 
-class Car:
+class Car(ABC):
 
     def __init__(self):
         self._engine = None
@@ -57,7 +58,7 @@ class Car:
         self._current_speed = None
         self._no_of_seats = None
         self._name = None
-        self._car_type = CarType.NonConvertibleCar
+        self._car_type = None
 
     def set_name(self, name: str):
         self._name = name
@@ -114,7 +115,14 @@ class Car:
         self.set_current_speed(self.get_current_speed() + velocity_over_epoch)
 
 
-class ConvertibleCar(Car, IConvertibleSpecialization):
+class Prius(Car):
+
+    def __init__(self):
+        super().__init__()
+        self._car_type = CarType.NonConvertibleCar
+
+
+class PorscheBoxster(Car, IConvertibleSpecialization):
 
     def __init__(self):
         super().__init__()

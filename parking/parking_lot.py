@@ -44,7 +44,7 @@ class OrderedParkingLot(IParkingLotInterface, ABC):
 
     def __init__(self, capacity):
         """
-        Parking slot is a lru cache with a defined capacity
+        Parking slot is a ordered cache with a defined capacity
         :param capacity:
         """
         self.capacity = capacity
@@ -90,7 +90,7 @@ class OrderedParkingLot(IParkingLotInterface, ABC):
 
     def remove(self, car: Car) -> bool:
         """
-        Removes the car if the
+        Removes the car if the car is present in parking lot
         :param car:
         :return:
         """
@@ -102,5 +102,9 @@ class OrderedParkingLot(IParkingLotInterface, ABC):
         return True
 
     def print_directory(self):
+        """
+        Print the parking lot directory
+        :return:
+        """
         for car, slot in self.directory.items():
             print(f"Parking slot: {slot}, Car: {car.get_name()}")

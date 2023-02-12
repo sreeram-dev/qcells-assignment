@@ -12,7 +12,7 @@ class TestCarFactory:
         Should build a non-convertible prius
         :return:
         """
-        prius = PriusFactory.build_car()
+        prius = PriusFactory.build_default_model()
         assert('Prius' in prius.get_name())
         assert prius.get_car_type() == CarType.NonConvertibleCar
         assert prius.get_hp() == 121
@@ -24,7 +24,7 @@ class TestCarFactory:
         Should build a porsche boxster with a `CarRoof`
         :return:
         """
-        porsche = PorscheFactory.build_car()
+        porsche = PorscheFactory.build_default_model()
         assert('PorscheBoxster' in porsche.get_name())
         assert porsche.get_car_type() == CarType.ConvertibleCar
         assert porsche.get_number_of_seats() == 2
@@ -36,3 +36,18 @@ class TestCarFactory:
         assert porsche.is_roof_open() is True
         porsche.close_roof()
         assert porsche.is_roof_open() is False
+
+    def test_car_description(self):
+        """
+        Get formatted details about the car
+        :return:
+        """
+        prius = PriusFactory.build_default_model()
+        description = prius.get_description()
+
+        # assert description has the following details
+        assert prius.get_production_number() in description
+        assert str(prius.get_hp()) in description
+        assert prius.get_car_type().name in description
+        assert prius.get_name() in description
+
