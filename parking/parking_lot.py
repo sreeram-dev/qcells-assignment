@@ -103,8 +103,12 @@ class OrderedParkingLot(IParkingLotInterface, ABC):
 
     def print_directory(self):
         """
-        Print the parking lot directory
+        Print the parking lot directory by slot numbers in ascending order
         :return:
         """
-        for car, slot in self.directory.items():
-            print(f"Parking slot: {slot}, Car: {car.get_name()}")
+        inv_map = {v: k for k, v in self.directory.items()}
+        for index in range(self.capacity):
+            if index in inv_map:
+                print(f"Parking slot: {index}, Car: {inv_map[index].get_name()}")
+            else:
+                print(f"Parking slot: {index}, Car: EMPTY")

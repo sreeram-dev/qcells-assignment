@@ -11,7 +11,7 @@ class TestParkingLot:
         Assignment #4
         :return:
         """
-        print("\n ### PARKING LOT SIMULATION RAISES ERROR ")
+        print("\n ### PARKING LOT SIMULATION RAISES ERROR ###")
         parking_lot = OrderedParkingLot(2)
         prius_1 = PriusFactory.build_default_model()
         prius_2 = PriusFactory.build_default_model()
@@ -54,5 +54,5 @@ class TestParkingLot:
         assert parking_lot.search(porsche_2) != -1
 
         # finally print the directory
-        print("### PRINTING THE DIRECTORY ###")
+        print("\n### PRINTING THE DIRECTORY ###")
         parking_lot.print_directory()
